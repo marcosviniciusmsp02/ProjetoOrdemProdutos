@@ -1,13 +1,11 @@
 package application;
 
-import java.time.Instant;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import entities.Client;
@@ -31,13 +29,14 @@ public class Program {
 		String emailClient = sc.nextLine();
 		System.out.print("Birth date (DD/MM/YYYY):");
 		LocalDate birthDate = LocalDate.parse(sc.next() , fmt);
+		
 		Client client = new Client(nameClient,emailClient,birthDate);
+		
 		System.out.println("Enter order data:");
 		System.out.print("Status: ");
-		sc.nextLine();
-		String status = sc.nextLine();
-		LocalDateTime moment = LocalDateTime.now();
-		Order order = new Order(moment,OrderStatus.valueOf(status), client);
+		OrderStatus status = OrderStatus.valueOf(sc.next());
+		
+		Order order = new Order(LocalDateTime.now(),status, client);
 		
 		System.out.print("How many items to this order?");
 		int n = sc.nextInt();
@@ -51,8 +50,10 @@ public class Program {
 			System.out.print("Quantity: ");
 			int quantity = sc.nextInt();
 			sc.nextLine();
+			
 			Product product = new Product(nameProduct, priceProduct);
 			OrderItem orderItem = new OrderItem(quantity, product);
+			
 			order.addItem(orderItem);
 		}
 		System.out.println();

@@ -1,8 +1,6 @@
 package entities;
 
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -57,11 +55,11 @@ public class Order {
 		sb.append("ORDER SUMMARY:\n");
 		sb.append("Order moment:" + fmt.format(this.moment) + "\n");
 		sb.append("Order status: " + status + "\n");
-		sb.append("Client:" + this.client.getName() + " (" + this.client.getBirthDate() + ") - ");
-		sb.append(this.client.getEmail());
+		sb.append("Client:");
+		sb.append(client + "\n");
 		sb.append("\nOrder items:\n");
 		for(OrderItem o : items) {
-			sb.append(o.toString() + "\n");
+			sb.append(o + "\n");
 		}
 		sb.append("Total price: $" + total());
 		return sb.toString();
